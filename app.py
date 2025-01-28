@@ -60,9 +60,15 @@ if __name__ == "__main__":
     try:
         app = tornado.web.Application([(r"/chat", AgentHandler)])
         app.listen(8888)  # Service will run on localhost:8888
-        logging.info("Tornado server is running at ws://localhost:8888/chat")
+        # logging for the server startup
+        logging.info("=========================================")
+        logging.info("🚀 Tornado server is running at: ")
+        logging.info("\033[1;32m ws://localhost:8888/chat \033[0m")  # Green text for the URL
+        logging.info("=========================================")
         tornado.ioloop.IOLoop.current().start()
-        
+
     except KeyboardInterrupt:
-        logging.info("Shutting down Tornado server.")
+        logging.info("=========================================")
+        logging.info("🛑 Shutting down Tornado server...")
+        logging.info("=========================================")
         tornado.ioloop.IOLoop.current().stop()
