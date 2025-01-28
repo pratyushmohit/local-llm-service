@@ -1,0 +1,12 @@
+[project]
+name = "text-to-analytics-service"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "langchain>=0.3.16",
+    "langgraph>=0.2.68",
+    "ollama>=0.4.7",
+    "tornado>=6.4.2",
+]
