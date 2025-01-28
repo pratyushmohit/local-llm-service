@@ -11,7 +11,7 @@ from agent.agent import stream_agent_updates
 logging.basicConfig(
     level=logging.INFO,  # Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     format="%(levelname)s: %(asctime)s - %(name)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"  # Use a professional date format
+    datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 
