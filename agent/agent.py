@@ -1,10 +1,10 @@
 from langgraph.graph import END, START, StateGraph
 
-from agent.utils.nodes import call_model
+from agent.utils.nodes import call_agent
 from agent.utils.state import State
 
 graph_builder = StateGraph(State)
-graph_builder.add_node("chatbot", call_model)
+graph_builder.add_node("chatbot", call_agent)
 graph_builder.add_edge(START, "chatbot")
 graph_builder.add_edge("chatbot", END)
 graph = graph_builder.compile()

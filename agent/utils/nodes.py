@@ -10,7 +10,7 @@ from agent.utils.state import State
 client = AsyncClient()
 
 
-async def call_model(state: State, config=None):
+async def call_agent(state: State, config=None):
     """
     The chatbot function that processes messages and streams the response from Ollama's API.
     """
@@ -31,7 +31,7 @@ async def call_model(state: State, config=None):
     ]
 
     # Start streaming the response from the Ollama model
-    async for part in await client.chat(model='deepseek-r1', messages=message, stream=True):
+    async for part in await client.chat(model='deepseek-r1', messages=message, tools=[], stream=True):
         if 'message' in part:
             if 'content' in part['message']:
                 role = part['message']['role']
