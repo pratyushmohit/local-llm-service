@@ -15,63 +15,34 @@ This repository contains a **LLM-powered chatbot** built with [LangGraph](https:
 
 ## 🛠 Installation & Setup  
 
-### 1. Install Ollama  
-First, download and install **Ollama** from [ollama.com](https://ollama.com).  
 
-### 2. Run the Deepseek Model  
-Once Ollama is installed, start the Deepseek-r1 model:  
-```sh
-ollama run deepseek-r1
-```
-
-### 3. Clone the Repository  
+### 1. Clone the Repository  
 ```sh
 git clone <repository-url>
 cd <repository-folder>
 ```
 
-### 4. Install Dependencies  
-Using uv (a faster alternative to pip):  
-```sh
-uv pip install -r pyproject.toml
-```
-
-### 5. Run the Chatbot  
-```sh
-uv run app.py
-```
-
-### 6. Test the API  
-Use an API testing tool like Postman or Insomnia to create a WebSocket request and connect to:  
-```sh
-ws://localhost:8888/chat
-```
-
----
-
-## 🏗️ Deploying with Minikube & Kubernetes  
-
-### 1. Start Minikube  
+### 2. Start Minikube  
 ```sh
 minikube start --cpus=6 --memory=7651MB
 ```
 
-### 2. (Optional) Update Your Docker Repository  
+### 3. (Optional) Update Your Docker Repository  
 If needed, update your Docker repository before proceeding.
 
-### 3. Build and Deploy  
+### 4. Build and Deploy  
 ```sh
 make deploy
 ```
 
-### 4. Monitor the Pods  
+### 5. Monitor the Pods  
 ```sh
 kubectl get pods
 ```
 Wait for all the pods to show **Running** status.
 
 
-### 5. Confirm the Model is Downloaded  
+### 6. Confirm the Model is Downloaded  
 ```sh
 kubectl exec -it deployment/ollama -- /bin/sh
 # ollama list
@@ -82,7 +53,7 @@ NAME                ID              SIZE      MODIFIED
 deepseek-r1:1.5b    a42b25d8c10a    1.1 GB    About a minute ago
 ```
 
-### 6. Port Forwarding  
+### 7. Port Forwarding  
 Expose the chatbot service:
 ```sh
 kubectl port-forward deployment/local-llm-service 8888:8888
