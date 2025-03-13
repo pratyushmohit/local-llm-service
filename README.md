@@ -20,29 +20,26 @@ This repository contains a **LLM-powered chatbot** built with [LangGraph](https:
 ```sh
 git clone <repository-url>
 cd <repository-folder>
-```
+```clear
 
 ### 2. Start Minikube  
 ```sh
 minikube start --cpus=6 --memory=7651MB
 ```
 
-### 3. (Optional) Update Your Docker Repository  
-If needed, update your Docker repository before proceeding.
-
-### 4. Build and Deploy  
+### 3. Build and Deploy  
 ```sh
 make deploy
 ```
 
-### 5. Monitor the Pods  
+### 4. Monitor the Pods  
 ```sh
 kubectl get pods
 ```
 Wait for all the pods to show **Running** status.
 
 
-### 6. Confirm the Model is Downloaded  
+### 5. Confirm the Model is Downloaded  
 ```sh
 kubectl exec -it deployment/ollama -- /bin/sh
 # ollama list
@@ -53,7 +50,7 @@ NAME                ID              SIZE      MODIFIED
 deepseek-r1:1.5b    a42b25d8c10a    1.1 GB    About a minute ago
 ```
 
-### 7. Port Forwarding  
+### 6. Port Forwarding  
 Expose the chatbot service:
 ```sh
 kubectl port-forward deployment/local-llm-service 8888:8888
