@@ -20,7 +20,7 @@ This repository contains a **LLM-powered chatbot** built with [LangGraph](https:
 ```sh
 git clone <repository-url>
 cd <repository-folder>
-```clear
+```
 
 ### 2. Start Minikube  
 ```sh
