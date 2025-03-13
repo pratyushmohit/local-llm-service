@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      containers:
+        - name: ollama
+          image: ollama/ollama:latest
+          ports:
+            - containerPort: 11434
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              ollama pull deepseek-r1 &&
+              ollama run deepseek-r1
+          resources:
+            requests:
+              cpu: "2000m"
+              memory: "6Gi"   # Increase request memory
+            limits:
+              cpu: "4000m"
+              memory: "8Gi"   # Increase memory limit
