@@ -1,4 +1,7 @@
 
+import os
+
+from dotenv import load_dotenv
 from langchain_core.language_models.chat_models import ChatGenerationChunk
 from langchain_core.messages import AIMessageChunk
 from langchain_core.runnables.config import (ensure_config,
@@ -7,7 +10,13 @@ from ollama import AsyncClient
 
 from agent.utils.state import State
 
-client = AsyncClient()
+# Load environment variables
+load_dotenv()
+
+OLLAMA_HOST = os.getenv("OLLAMA_SERVICE_ENDPOINT")
+OLLAMA_MODEL_NAME = os.getenv("OLLAMA_MODEL_NAME")
+
+client = AsyncClient(host=OLLAMA_HOST)
 
 
 async def call_agent(state: State, config=None):
@@ -31,7 +40,7 @@ async def call_agent(state: State, config=None):
     ]
 
     # Start streaming the response from the Ollama model
-    async for part in await client.chat(model='deepseek-r1', messages=message, tools=[], stream=True):
+    async for part in await client.chat(model=OLLAMA_MODEL_NAME, messages=message, tools=[], stream=True):
         if 'message' in part:
             if 'content' in part['message']:
                 role = part['message']['role']

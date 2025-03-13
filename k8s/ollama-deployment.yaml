@@ -20,12 +20,15 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
-              ollama pull deepseek-r1 &&
-              ollama run deepseek-r1
+              ollama serve
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "ollama pull deepseek-r1:1.5b"]
           resources:
             requests:
-              cpu: "2000m"
+              cpu: "4000m"
               memory: "6Gi"   # Increase request memory
             limits:
-              cpu: "4000m"
-              memory: "8Gi"   # Increase memory limit
+              cpu: "6000m"
+              memory: "7Gi"   # Increase memory limit

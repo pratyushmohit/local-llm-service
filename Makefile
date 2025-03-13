@@ -28,15 +28,11 @@ deploy:
 	kubectl apply -f k8s/ollama-deployment.yaml
 	kubectl apply -f k8s/ollama-service.yaml
 
-
 # Clean up containers and deployments
 clean:
-	docker stop $(IMAGE_NAME) || true
-	docker rm $(IMAGE_NAME) || true
-	docker rmi $(IMAGE_NAME):$(TAG) || true
-	kubectl delete -f k8s/local-llm-service-deployment.yaml || true
-	kubectl delete -f k8s/local-llm-service.yaml || true
-	kubectl delete -f k8s/ollama-deployment.yaml || true
-	kubectl delete -f k8s/ollama-service.yaml || true
+	kubectl delete -f k8s/local-llm-service-deployment.yaml
+	kubectl delete -f k8s/local-llm-service.yaml
+	kubectl delete -f k8s/ollama-deployment.yaml
+	kubectl delete -f k8s/ollama-service.yaml
 
 all: build push deploy
