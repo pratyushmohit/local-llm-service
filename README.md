@@ -61,7 +61,7 @@ If needed, update your Docker repository before proceeding.
 
 ### 3. Build and Deploy  
 ```sh
-make all
+make deploy
 ```
 
 ### 4. Monitor the Pods  
@@ -70,13 +70,8 @@ kubectl get pods
 ```
 Wait for all the pods to show **Running** status.
 
-### 5. Download and Run the Model in Kubernetes  
-```sh
-kubectl exec -it deployment/ollama -- /bin/sh
-ollama run deepseek-r1:1.5b
-```
 
-### 6. Confirm the Model is Downloaded  
+### 5. Confirm the Model is Downloaded  
 ```sh
 kubectl exec -it deployment/ollama -- /bin/sh
 # ollama list
@@ -87,7 +82,7 @@ NAME                ID              SIZE      MODIFIED
 deepseek-r1:1.5b    a42b25d8c10a    1.1 GB    About a minute ago
 ```
 
-### 7. Port Forwarding  
+### 6. Port Forwarding  
 Expose the chatbot service:
 ```sh
 kubectl port-forward deployment/local-llm-service 8888:8888
