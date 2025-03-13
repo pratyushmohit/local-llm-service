@@ -1,4 +1,4 @@
-# 🧠 Local LLM with Ollama, LangGraph, and Deepseek-r1  
+# 🧠 Local LLM with Ollama, Kubernetes, LangGraph, and Deepseek-r1  
 
 This repository contains a **LLM-powered chatbot** built with [LangGraph](https://github.com/langchain-ai/langgraph) and [Deepseek-r1](https://ollama.ai/library/deepseek-r1). The agent runs on **Ollama** and communicates via **WebSockets**, making it efficient for real-time interactions.
 
