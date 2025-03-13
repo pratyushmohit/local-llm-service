@@ -4,27 +4,30 @@ ifneq (,$(wildcard ./.env))
 endif
 
 # Define image name and tag
+REPOSITORY_NAME := pratyushmohitk/nautilus
 IMAGE_NAME := local-llm-service
 TAG := latest
+FULL_IMAGE_NAME := $(REPOSITORY_NAME):$(TAG)
 
 # Build the Docker image
 build:
-	docker build -t $(IMAGE_NAME):$(TAG) -f Dockerfile .
+	docker build -t $(FULL_IMAGE_NAME) -f Dockerfile .
 
 # Run the container locally (not in Minikube)
 run:
-	docker run -dp 8888:8888 --name $(IMAGE_NAME) $(IMAGE_NAME):$(TAG)
+	docker run -dp 8888:8888 --name $(IMAGE_NAME) $(FULL_IMAGE_NAME)
 
-# Deploy to Minikube
+# Push the image to Docker Hub
+push:
+	docker push $(FULL_IMAGE_NAME)
+
+# Deploy to kubernetes
 deploy:
-    # Ensure Minikube uses its internal Docker
-	eval $$(minikube docker-env)
-	docker build -t $(IMAGE_NAME):$(TAG) -f Dockerfile .
-	minikube image load $(IMAGE_NAME):$(TAG)  # Load image into Minikube
 	kubectl apply -f k8s/local-llm-service-deployment.yaml
 	kubectl apply -f k8s/local-llm-service.yaml
 	kubectl apply -f k8s/ollama-deployment.yaml
 	kubectl apply -f k8s/ollama-service.yaml
+
 
 # Clean up containers and deployments
 clean:
@@ -35,3 +38,5 @@ clean:
 	kubectl delete -f k8s/local-llm-service.yaml || true
 	kubectl delete -f k8s/ollama-deployment.yaml || true
 	kubectl delete -f k8s/ollama-service.yaml || true
+
+all: build push deploy

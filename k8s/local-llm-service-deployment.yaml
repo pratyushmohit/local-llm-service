@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
         - name: local-llm-service
-          image: local-llm-service:latest # Change this to your actual image
-          imagePullPolicy: Never   # Prevents Kubernetes from trying to pull the image
+          image: pratyushmohitk/nautilus:latest
           ports:
             - containerPort: 8888
           resources:
